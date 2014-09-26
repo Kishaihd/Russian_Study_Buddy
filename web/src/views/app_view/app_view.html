@@ -1,0 +1,142 @@
+<!-- Polymer Element HTML import links go here (above <polymer-element> tag) -->
+<link rel="import" href="packages/polymer/polymer.html">
+<link rel="import" href="packages/core_elements/core_scaffold.html">
+<link rel="import" href="packages/core_elements/core_header_panel.html">
+<link rel="import" href="packages/core_elements/core_drawer_panel.html">
+<link rel="import" href="packages/core_elements/core_toolbar.html">
+<link rel="import" href="packages/core_elements/core_menu.html">
+<link rel="import" href="packages/core_elements/core_item.html">
+<link rel="import" href="packages/paper_elements/paper_tabs.html">
+<link rel="import" href="packages/paper_elements/paper_item.html">
+
+<polymer-element name="app-view">
+  <template>
+    <link rel="stylesheet" href="../../../resources/css/app.css">
+
+    <style>
+      :host {
+        height: 100%;
+      }
+
+      #drawer-header {
+        color: rgb(255, 255, 255);
+        background-color: rgb(79, 125, 201);        
+      }
+
+      .menu-header-text {
+        font-size: 0.9em;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      .box-container {
+        width: 475px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: white;
+      }
+      
+      .noun-box {
+        padding: 2%;
+      }
+      paper-tabs.transparent-teal {
+      background-color: transparent;
+      color: #00bcd4;
+      box-shadow: none;
+      }
+      
+      paper-tabs.transparent-teal::shadow #selectionBar {
+        background-color: #00bcd4;
+      }
+      
+      paper-tabs.transparent-teal paper-tab::shadow #ink {
+        color: #00bcd4;
+      }
+      
+      
+    </style>
+
+    <!--
+      Scaffold
+      The scaffold contains a <core-drawer-panel>, a <core-header-panel>, and a <core-toolbar>.
+      Use attributes on the scaffold's children to indicate where they should be placed.
+      Elements with no scaffold attributes are "distributed" into the main content area (not in the scaffold's Shadow DOM).
+
+      Scaffold Attributes
+      responsiveWidth: The width at which the scaffold will automatically collapse the drawer panel (default: 600px)
+      mode: Sets the mode of the main area's <core-header-panel> (default: "seamed")
+
+      Scaffold Child Attributes
+      navigation: the element (0-1) marked with this attribute goes into the <core-drawer-panel>
+      tool: an element (0...) marked with this attribute is included in the main area's <core-toolbar>
+    -->
+
+    <core-scaffold responsiveWidth="800px">
+      <core-header-panel mode="waterfall" navigation flex>
+        <core-toolbar id="drawer-header">
+          <span class="menu-header-text">Menu</span>
+        </core-toolbar>
+
+        <core-menu valueattr="label" theme="core-light-theme">
+          <core-item icon="drawer" label="Noun Declensions"><a on-click="{{changeView}}" data-view="NOUN_VIEW"></a></core-item>
+          <core-item icon="drawer" label="Verb Conjugations"><a on-click="{{changeView}}" data-view="VERB_VIEW"></a></core-item>
+          <core-item icon="drawer" label="Vocabulary"><a on-click="{{changeView}}" data-view="VOCAB_VIEW"></a></core-item>
+          <!-- core-item icon="toc" label="Item4"></core-item -->
+        </core-menu>
+      </core-header-panel>
+
+      <div tool>Russian Study-buddy</div>
+
+      <div class="content">
+        <!-- p -->
+          <template if="{{currentView == 'INTRO_VIEW'}}">
+            <div id="intro_view" class="intro-box"> 
+              {{introBind}}
+            </div>
+          </template>
+        
+          <template if="{{currentView == 'NOUN_VIEW'}}">
+            
+            <!--div id="noun_view" class="noun-box">              
+              <button>{{nounBind}}</button-->
+              <!--div horizontal justified layout-->
+                <paper-tabs selected="0" class="transparent-teal">
+  
+                  <paper-tab name="Declensions"><a on-click="{{changeContent}}" data-content="DECLENSIONS"></a>Declensions</paper-tab>
+                    <paper><div vertical layout if="{{currentData == 'DECLENSIONS'}}">test test <br> test test</div></paper>
+                  <paper-tab name="Examples"><a  on-click="{{changeContent}}" data-content="D_EXAMPLES"></a>Examples</paper-tab>
+                  
+                </paper-tabs>
+                
+                  
+                    <div vertical layout if="{{currentData == 'DECLENSIONS'}}">test test <br> test test</div>                
+                    <div vertical layout if="{{currentData == 'D_EXAMPLES'}}"> test <br> test test test</div>                  
+                    <div vertical layout>test test test <br> test</div>                
+              <!--/div-->
+            <!--/div-->
+          </template>
+
+          <template if="{{currentView == 'VERB_VIEW'}}">
+            <div id="verb_view" class="verb-box">
+              {{verbBind}}
+            </div>
+          </template>
+          
+          <template if="{{currentView == 'VOCAB_VIEW'}}">
+            <div id="vocab_view" class="vocab-box">
+              {{vocabBind}}
+            </div>
+          </template>
+          <!-- /p -->
+      </div>
+
+        <!--div class="box-container">
+          
+        </div-->
+    </core-scaffold>
+  </template>
+
+  <script type="application/dart" src="app_view.dart"></script>
+</polymer-element>

@@ -8,10 +8,11 @@
 <link rel="import" href="packages/core_elements/core_item.html">
 <link rel="import" href="packages/paper_elements/paper_tabs.html">
 <link rel="import" href="packages/paper_elements/paper_item.html">
+<link rel="import" href="packages/paper_elements/paper_button.html">
 
 <polymer-element name="app-view">
   <template>
-    <link rel="stylesheet" href="../../../resources/css/app.css">
+    <!--link rel="stylesheet" href="../../../resources/css/app.css"-->
 
     <style>
       :host {
@@ -41,10 +42,11 @@
       .noun-box {
         padding: 2%;
       }
+      
       paper-tabs.transparent-teal {
-      background-color: transparent;
-      color: #00bcd4;
-      box-shadow: none;
+        background-color: transparent;
+        color: #00bcd4;
+        box-shadow: none;
       }
       
       paper-tabs.transparent-teal::shadow #selectionBar {
@@ -53,8 +55,20 @@
       
       paper-tabs.transparent-teal paper-tab::shadow #ink {
         color: #00bcd4;
+      }      
+      
+      #my-button {
+        background: #00bcd4;
+        color: #fff;
       }
       
+      #my-button:hover {
+        background: #2a56c6;
+      }
+      
+      #my-button::shadow #ripple {
+        color: #2a56c6;
+      }
       
     </style>
 
@@ -83,7 +97,6 @@
           <core-item icon="drawer" label="Noun Declensions"><a on-click="{{changeView}}" data-view="NOUN_VIEW"></a></core-item>
           <core-item icon="drawer" label="Verb Conjugations"><a on-click="{{changeView}}" data-view="VERB_VIEW"></a></core-item>
           <core-item icon="drawer" label="Vocabulary"><a on-click="{{changeView}}" data-view="VOCAB_VIEW"></a></core-item>
-          <!-- core-item icon="toc" label="Item4"></core-item -->
         </core-menu>
       </core-header-panel>
 
@@ -98,24 +111,17 @@
           </template>
         
           <template if="{{currentView == 'NOUN_VIEW'}}">
-            
             <!--div id="noun_view" class="noun-box">              
               <button>{{nounBind}}</button-->
               <!--div horizontal justified layout-->
-                <paper-tabs selected="0" class="transparent-teal">
   
-                  <paper-tab name="Declensions"><a on-click="{{changeContent}}" data-content="DECLENSIONS"></a>Declensions</paper-tab>
-                    <paper><div vertical layout if="{{currentData == 'DECLENSIONS'}}">test test <br> test test</div></paper>
-                  <paper-tab name="Examples"><a  on-click="{{changeContent}}" data-content="D_EXAMPLES"></a>Examples</paper-tab>
+                  <paper-button horizontal start-justified layout label="Declensions" raisedButton><a on-select="{{changeContent}}" data-content="DECLENSIONS"></a>Declensions</paper-button>
+                  <paper-button horizontal end-justified layout label="Examples" raisedButton><a on-select="{{changeContent}}" data-content="D_EXAMPLES"></a>Examples</paper-button>
                   
-                </paper-tabs>
-                
-                  
-                    <div vertical layout if="{{currentData == 'DECLENSIONS'}}">test test <br> test test</div>                
-                    <div vertical layout if="{{currentData == 'D_EXAMPLES'}}"> test <br> test test test</div>                  
-                    <div vertical layout>test test test <br> test</div>                
-              <!--/div-->
-            <!--/div-->
+                                  
+                <div>
+                  {{whatamIdoing}} what the shit.
+                </div>
           </template>
 
           <template if="{{currentView == 'VERB_VIEW'}}">

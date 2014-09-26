@@ -1,3 +1,13 @@
+<link rel="import" href="packages/polymer/polymer.html">
+<link rel="import" href="packages/core_elements/core_scaffold.html">
+<link rel="import" href="packages/core_elements/core_header_panel.html">
+<link rel="import" href="packages/core_elements/core_drawer_panel.html">
+<link rel="import" href="packages/core_elements/core_toolbar.html">
+<link rel="import" href="packages/core_elements/core_menu.html">
+<link rel="import" href="packages/core_elements/core_item.html">
+<link rel="import" href="packages/paper_elements/paper_tabs.html">
+<link rel="import" href="packages/paper_elements/paper_item.html">
+
 <polymer-element name="noun-view">
   <template>
     <link rel="stylesheet" href="../../../resources/css/app.css">
@@ -9,36 +19,23 @@
         border-bottom: 2px solid #151515;
       }
 
-      input[type=number] {
-        width: 60px;
-        text-align: right;
-        margin: 0;
-      }
-
-      .input-group {
-        width: 95px;
-      }
-
-      .die-image {
-        width: 36px;
-        height: 36px;
-        cursor: pointer;
-        -moz-user-drag: -moz-none;
-        -webkit-user-drag: none;
-        user-drag: none;
-      }
-
-      .input-group-addon {
-        color: #CCCCCC;
-      }
     </style>
-
-    <form class="flexbox-row-nowrap flex-justify-space-between flex-align-items-center" on-submit="{{submit}}">
-      <input type="number" class="form-control input-sm" value="{{qty | asInteger}}" autocomplete="off" on-keyUp="{{keyUp}}" min="1">
-      <img class="die-image" src="{{dieImgPath}}" on-click="{{roll}}">
-      <div class="input-group input-group-sm"><span class="input-group-addon input-sm">+/-</span><input type="number" class="form-control input-sm" value="{{mod | asInteger}}" autocomplete="off" on-keyUp="{{keyUp}}"></div>
-      <div class="input-group input-group-sm"><span class="input-group-addon input-sm">x</span><input type="number" class="form-control input-sm" value="{{rep | asInteger}}" autocomplete="off" on-keyUp="{{keyUp}}" min="1"></div>
-    </form>
+    
+  
+            <!--div id="noun_view" class="noun-box">              
+              <button>{{nounBind}}</button-->
+              <!--div horizontal justified layout-->
+                <paper-tabs selected="0" class="transparent-teal">
+  
+                  <paper-tab name="Declensions"><a on-select="{{changeContent}}" data-content="DECLENSIONS"></a>Declensions</paper-tab>
+                  <paper-tab name="Examples"><a on-select="{{changeContent}}" data-content="D_EXAMPLES"></a>Examples</paper-tab>
+                  
+                </paper-tabs>
+                                  
+                <div horizontal justified layout>
+                  {{whatamIdoing}} what the shit.
+                </div>
+   
   </template>
 
   <script type="application/dart" src="noun_view.dart"></script>

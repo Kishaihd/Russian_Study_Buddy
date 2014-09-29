@@ -6,7 +6,10 @@
 <link rel="import" href="packages/core_elements/core_toolbar.html">
 <link rel="import" href="packages/core_elements/core_menu.html">
 <link rel="import" href="packages/core_elements/core_item.html">
+<link rel="import" href="packages/core_elements/core_pages.html">
+<link rel="import" href="packages/core_elements/core_selector.html">
 <link rel="import" href="packages/paper_elements/paper_tabs.html">
+<link rel="import" href="packages/paper_elements/paper_tab.html">
 <link rel="import" href="packages/paper_elements/paper_item.html">
 <link rel="import" href="packages/paper_elements/paper_button.html">
 
@@ -15,21 +18,20 @@
     <!--link rel="stylesheet" href="../../../resources/css/app.css"-->
 
     <style>
-      :host {
-        height: 100%;
+      #cont {
+        padding: 10px;
+        background-color: 3b8183;
       }
-
-      #drawer-header {
-        color: rgb(255, 255, 255);
-        background-color: rgb(79, 125, 201);        
+      
+      .intro-box {
+        color: 424b4b;
+        background-color: bdced7;
       }
-
-      .menu-header-text {
-        font-size: 0.9em;
-      }
-
-      .content {
-        padding: 20px;
+      
+      .shits {
+        color: black;
+        background-color: black;
+        text-color: black;
       }
 
       .box-container {
@@ -39,23 +41,10 @@
         background-color: white;
       }
       
-      .noun-box {
-        padding: 2%;
+      #main-container {
+        background: 2a56c6;
+        color: white;
       }
-      
-      paper-tabs.transparent-teal {
-        background-color: transparent;
-        color: #00bcd4;
-        box-shadow: none;
-      }
-      
-      paper-tabs.transparent-teal::shadow #selectionBar {
-        background-color: #00bcd4;
-      }
-      
-      paper-tabs.transparent-teal paper-tab::shadow #ink {
-        color: #00bcd4;
-      }      
       
       #my-button {
         background: #00bcd4;
@@ -70,8 +59,13 @@
         color: #2a56c6;
       }
       
+      table, th, td {
+        border: 1px solid black;
+        padding: 2px;
+      }
+      
     </style>
-
+    
     <!--
       Scaffold
       The scaffold contains a <core-drawer-panel>, a <core-header-panel>, and a <core-toolbar>.
@@ -87,22 +81,23 @@
       tool: an element (0...) marked with this attribute is included in the main area's <core-toolbar>
     -->
 
-    <core-scaffold responsiveWidth="800px">
+    <core-scaffold responsiveWidth="800px" >
       <core-header-panel mode="waterfall" navigation flex>
         <core-toolbar id="drawer-header">
           <span class="menu-header-text">Menu</span>
         </core-toolbar>
 
-        <core-menu valueattr="label" theme="core-light-theme">
+        <core-menu valueattr="label"> <!--  -->
           <core-item icon="drawer" label="Noun Declensions"><a on-click="{{changeView}}" data-view="NOUN_VIEW"></a></core-item>
           <core-item icon="drawer" label="Verb Conjugations"><a on-click="{{changeView}}" data-view="VERB_VIEW"></a></core-item>
           <core-item icon="drawer" label="Vocabulary"><a on-click="{{changeView}}" data-view="VOCAB_VIEW"></a></core-item>
+          <core-item icon="drawer" label="Dictionary"><a on-click="{{changeView}}" data-view="DIC_VIEW"></a></core-item>
         </core-menu>
       </core-header-panel>
 
       <div tool>Russian Study-buddy</div>
 
-      <div class="content">
+      <div class="content" id="cont">
         <!-- p -->
           <template if="{{currentView == 'INTRO_VIEW'}}">
             <div id="intro_view" class="intro-box"> 
@@ -111,22 +106,375 @@
           </template>
         
           <template if="{{currentView == 'NOUN_VIEW'}}">
-            <!--div id="noun_view" class="noun-box">              
-              <button>{{nounBind}}</button-->
-              <!--div horizontal justified layout-->
+              <paper-tabs selected="{{tabSelected}}" class="transparent-teal"> <!--  id="tabs"  -->
+                <paper-tab>Declensions</paper-tab>
+                <paper-tab>Examples</paper-tab>
+              </paper-tabs>
+      
+            <core-pages selected="{{tabSelected}}">
+            <!-- Declension Endings -->
+              <div>
+                <table>
+                  <caption><br><paper-button primary raisedButton >Masculine</paper-button></caption>
+                  <tr> 
+                    <th>Nominative</th>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>Accusative</th>
+                    <td>Animate: Genetive</td>
+                  </tr>
+                  <tr>
+                    <th>Accusative</th>
+                    <td>Inanimate: nominative</td>
+                  </tr>   
+                  <tr>                  
+                    <th>Genetive</th>
+                    <td>-А</td>
+                  </tr>
+                  <tr>
+                    <th>Dative</th>
+                    <td>-У</td>
+                  </tr>
+                  <tr>
+                    <th>Instrumental</th>
+                    <td>-ОМ</td>
+                  </tr>
+                  <tr>
+                    <th>Prepositional</th>
+                    <td>-Е</td>
+                  </tr>
+                  </table>
+                <br>
+                  <table>
+                  <caption><br><paper-button secondary raisedButton >Feminine</paper-button></caption>
+                  <tr> 
+                    <th>Nominative</th>
+                    <td>-А</td>
+                  </tr>
+                  <tr>
+                    <th>Accusative</th>
+                    <td>-У</td>
+                  </tr>   
+                  <tr>                  
+                    <th>Genetive</th>
+                    <td>-И</td>
+                  </tr>
+                  <tr>
+                    <th>Dative</th>
+                    <td>-Е</td>
+                  </tr>
+                  <tr>
+                    <th>Instrumental</th>
+                    <td>-ОЙ</td>
+                  </tr>
+                  <tr>
+                    <th>Prepositional</th>
+                    <td>-Е</td>
+                  </tr>
+                </table>
+                <br>
+                <table>
+                  <caption><br><paper-button default raisedButton >Neuter </paper-button></caption>
+                  <tr> 
+                    <th>Nominative</th>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <th>Accusative</th>
+                    <td>Nominative</td>
+                  </tr>   
+                  <tr>                  
+                    <th>Genetive</th>
+                    <td>-А</td>
+                  </tr>
+                  <tr>
+                    <th>Dative</th>
+                    <td>-У</td>
+                  </tr>
+                  <tr>
+                    <th>Instrumental</th>
+                    <td>-ОМ</td>
+                  </tr>
+                  <tr>
+                    <th>Prepositional</th>
+                    <td>-Е</td>
+                  </tr>
+                </table>
+              </div>
+              <!-- Declension Examples -->
+              <div>
+                <table>
+                  <caption><br><paper-button primary raisedButton >Masculine</paper-button></caption>
+                  <tr> 
+                    <th>Nominative</th>
+                    <td>СТОЛ</td>
+                  </tr>
+                  <tr>
+                    <th>Accusative</th>
+                    <td>СТОЛ</td>
+                  </tr>   
+                  <tr>                  
+                    <th>Genetive</th>
+                    <td>СТОЛА</td>
+                  </tr>
+                  <tr>
+                    <th>Dative</th>
+                    <td>СТОЛУ</td>
+                  </tr>
+                  <tr>
+                    <th>Instrumental</th>
+                    <td>СТОЛОМ</td>
+                  </tr>
+                  <tr>
+                    <th>Prepositional</th>
+                    <td>СТОЛЕ</td>
+                  </tr>
+                  </table>
+                <br>
+                  <table>
+                  <caption><br><paper-button secondary raisedButton >Feminine</paper-button></caption>
+                  <tr> 
+                    <th>Nominative</th>
+                    <td>КНИГА</td>
+                  </tr>
+                  <tr>
+                    <th>Accusative</th>
+                    <td>КНИГУ</td>
+                  </tr>   
+                  <tr>                  
+                    <th>Genetive</th>
+                    <td>КНИГИ</td>
+                  </tr>
+                  <tr>
+                    <th>Dative</th>
+                    <td>КНИГЕ</td>
+                  </tr>
+                  <tr>
+                    <th>Instrumental</th>
+                    <td>КНИГОЙ</td>
+                  </tr>
+                  <tr>
+                    <th>Prepositional</th>
+                    <td>КНИГЕ</td>
+                  </tr>
+                </table>
+                <br>
+                <table>
+                  <caption><br><paper-button default raisedButton >Neuter </paper-button></caption>
+                  <tr> 
+                    <th>Nominative</th>
+                    <td>ПИСЬМО</td>
+                  </tr>
+                  <tr>
+                    <th>Accusative</th>
+                    <td>ПИСЬМО</td>
+                  </tr>   
+                  <tr>                  
+                    <th>Genetive</th>
+                    <td>ПИСЬМА</td>
+                  </tr>
+                  <tr>
+                    <th>Dative</th>
+                    <td>ПИСЬМУ</td>
+                  </tr>
+                  <tr>
+                    <th>Instrumental</th>
+                    <td>ПИСЬМОМ</td>
+                  </tr>
+                  <tr>
+                    <th>Prepositional</th>
+                    <td>ПИСЬМЕ</td>
+                  </tr>
+                </table>
+              </div>
+            </core-pages>
   
-                  <paper-button horizontal start-justified layout label="Declensions" raisedButton><a on-select="{{changeContent}}" data-content="DECLENSIONS"></a>Declensions</paper-button>
-                  <paper-button horizontal end-justified layout label="Examples" raisedButton><a on-select="{{changeContent}}" data-content="D_EXAMPLES"></a>Examples</paper-button>
-                  
-                                  
-                <div>
-                  {{whatamIdoing}} what the shit.
-                </div>
           </template>
 
           <template if="{{currentView == 'VERB_VIEW'}}">
             <div id="verb_view" class="verb-box">
-              {{verbBind}}
+              <paper-tabs selected="{{tabSelected}}" class="transparent-teal"> <!--  id="tabs"  -->
+                <paper-tab>-АтЬ Verb</paper-tab>
+                <paper-tab>-Ить Verb</paper-tab>
+                <paper-tab>- Verb</paper-tab>
+                <paper-tab>- Verb</paper-tab>
+              </paper-tabs>
+      
+            <core-pages  center-justified layout selected="{{tabSelected}}">
+            <!-- Declension Endings -->
+              <div>
+                <table>
+                  <caption><br><paper-button primary raisedButton >-АТЬ</paper-button></caption>
+                  <tr> 
+                    <th>Я</th>
+                    <td>Читаю</td>
+                  </tr>
+                  <tr>
+                    <th>Ты</th>
+                    <td>Читаешь</td>
+                  </tr>
+                  <tr>
+                    <th>Он\Она\Оно</th>
+                    <td>Читает</td>
+                  </tr>   
+                  <tr>                  
+                    <th>Мы</th>
+                    <td>Читаем</td>
+                  </tr>
+                  <tr>
+                    <th>Вы</th>
+                    <td>Читаете</td>
+                  </tr>
+                  <tr>
+                    <th>Они</th>
+                    <td>Читают</td>
+                  </tr>
+                  </table>
+                <br>
+                  <table>
+                  <caption><br><paper-button secondary raisedButton >-Ить</paper-button></caption>
+                  <tr> 
+                    <th>Я</th>
+                    <td>Говорю</td>
+                  </tr>
+                  <tr>
+                    <th>Ты</th>
+                    <td>Говоришь</td>
+                  </tr>
+                  <tr>
+                    <th>Он\Она\Оно</th>
+                    <td>Говорит</td>
+                  </tr>   
+                  <tr>                  
+                    <th>Мы</th>
+                    <td>Говорим</td>
+                  </tr>
+                  <tr>
+                    <th>Вы</th>
+                    <td>Говорите</td>
+                  </tr>
+                  <tr>
+                    <th>Они</th>
+                    <td>Говорят</td>
+                  </tr>
+                </table>
+                <br>
+                <table>
+                  <caption><br><paper-button default raisedButton ></paper-button></caption>
+                  <tr> 
+                    <th>Nominative</th>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <th>Accusative</th>
+                    <td>Nominative</td>
+                  </tr>   
+                  <tr>                  
+                    <th>Genetive</th>
+                    <td>-А</td>
+                  </tr>
+                  <tr>
+                    <th>Dative</th>
+                    <td>-У</td>
+                  </tr>
+                  <tr>
+                    <th>Instrumental</th>
+                    <td>-ОМ</td>
+                  </tr>
+                  <tr>
+                    <th>Prepositional</th>
+                    <td>-Е</td>
+                  </tr>
+                </table>
+              </div>
+              <!-- Declension Examples -->
+              <div>
+                <table>
+                  <caption><br><paper-button primary raisedButton >Masculine</paper-button></caption>
+                  <tr> 
+                    <th>Nominative</th>
+                    <td>СТОЛ</td>
+                  </tr>
+                  <tr>
+                    <th>Accusative</th>
+                    <td>СТОЛ</td>
+                  </tr>   
+                  <tr>                  
+                    <th>Genetive</th>
+                    <td>СТОЛА</td>
+                  </tr>
+                  <tr>
+                    <th>Dative</th>
+                    <td>СТОЛУ</td>
+                  </tr>
+                  <tr>
+                    <th>Instrumental</th>
+                    <td>СТОЛОМ</td>
+                  </tr>
+                  <tr>
+                    <th>Prepositional</th>
+                    <td>СТОЛЕ</td>
+                  </tr>
+                  </table>
+                <br>
+                  <table>
+                  <caption><br><paper-button secondary raisedButton >Feminine</paper-button></caption>
+                  <tr> 
+                    <th>Nominative</th>
+                    <td>КНИГА</td>
+                  </tr>
+                  <tr>
+                    <th>Accusative</th>
+                    <td>КНИГУ</td>
+                  </tr>   
+                  <tr>                  
+                    <th>Genetive</th>
+                    <td>КНИГИ</td>
+                  </tr>
+                  <tr>
+                    <th>Dative</th>
+                    <td>КНИГЕ</td>
+                  </tr>
+                  <tr>
+                    <th>Instrumental</th>
+                    <td>КНИГОЙ</td>
+                  </tr>
+                  <tr>
+                    <th>Prepositional</th>
+                    <td>КНИГЕ</td>
+                  </tr>
+                </table>
+                <br>
+                <table>
+                  <caption><br><paper-button default raisedButton >Neuter </paper-button></caption>
+                  <tr> 
+                    <th>Nominative</th>
+                    <td>ПИСЬМО</td>
+                  </tr>
+                  <tr>
+                    <th>Accusative</th>
+                    <td>ПИСЬМО</td>
+                  </tr>   
+                  <tr>                  
+                    <th>Genetive</th>
+                    <td>ПИСЬМА</td>
+                  </tr>
+                  <tr>
+                    <th>Dative</th>
+                    <td>ПИСЬМУ</td>
+                  </tr>
+                  <tr>
+                    <th>Instrumental</th>
+                    <td>ПИСЬМОМ</td>
+                  </tr>
+                  <tr>
+                    <th>Prepositional</th>
+                    <td>ПИСЬМЕ</td>
+                  </tr>
+                </table>
+              </div>
+            </core-pages>
             </div>
           </template>
           
@@ -136,11 +484,14 @@
             </div>
           </template>
           <!-- /p -->
+          <template if="{{currentView == 'DIC_VIEW'}}"> <!-- Dictionary. Ha HA! -->
+            <div id="dic_view" class="dic-box"> 
+              {{dicBind}}
+            </div>
+           </template>
       </div>
 
-        <!--div class="box-container">
-          
-        </div-->
+        <!-- there was a div here... -->
     </core-scaffold>
   </template>
 

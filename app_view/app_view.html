@@ -1,0 +1,60 @@
+<!-- Polymer Element HTML import links go here (above <polymer-element> tag) -->
+<link rel="import" href="packages/polymer/polymer.html">
+<link rel="import" href="packages/core_elements/core_header_panel.html">
+<link rel="import" href="packages/core_elements/core_toolbar.html">
+<link rel="import" href="packages/core_elements/core_pages.html">
+<link rel="import" href="packages/paper_elements/paper_tabs.html">
+
+<polymer-element name="app-view">
+  <template>
+    <style>
+      :host {
+        height: 100%;
+        background-color: #E5E5E5;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      core-header-panel {
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      core-toolbar {
+        background: #03a9f4;
+        color: white;
+      }
+
+      #tabs {
+        width: 100%;
+        margin: 0;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        text-transform: uppercase;
+      }
+
+      core-pages div {
+        padding: 10px;
+      }
+    </style>
+
+    <core-header-panel flex>
+
+      <core-toolbar>
+        <paper-tabs id="tabs" selected="{{tabSelected}}" self-end>
+          <paper-tab>Page 1</paper-tab>
+          <paper-tab>Page 2</paper-tab>
+        </paper-tabs>
+      </core-toolbar>
+
+      <core-pages selected="{{tabSelected}}">
+        <div>Page 1</div>
+        <div>Page 2</div>
+      </core-pages>
+
+    </core-header-panel>
+  </template>
+
+  <script type="application/dart" src="app_view.dart"></script>
+</polymer-element>

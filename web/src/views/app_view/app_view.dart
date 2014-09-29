@@ -13,41 +13,25 @@ class AppView extends PolymerElement {
   static const String NOUN_VIEW = "NOUN_VIEW";
   static const String VERB_VIEW = "VERB_VIEW";
   static const String VOCAB_VIEW = "VOCAB_VIEW";
-    
+  static const String DIC_VIEW = "DIC_VIEW";
+  
   static const String DECLENSIONS = "DECLENSIONS";
   static const String D_EXAMPLES  = "D_EXAMPLES";
   static const String CONJUGATIONS = "CONJUGATIONS";
   static const String C_EXAMPLES = "C_EXAMPLES";
   
   @observable String currentView = INTRO_VIEW;
-  @observable String currentData = D_EXAMPLES;
-  @observable String whatamIdoing = "what the";
+  @observable int tabSelected = 0;
   
   void changeView(Event e, var detail, Element target) {
       currentView = target.attributes['data-view'];
-  }
-  
-  void changeContent(Event e, var detail, Element target) {
-    currentData = target.attributes['data-content'];
-    showDeclensions();
-  }
-  
-  void showDeclensions() {
-    if (currentData == 'DECLENSIONS') {
-      whatamIdoing = "test declensions";
-    }
-    else if (currentData == 'D_EXAMPLES') {
-      whatamIdoing = "declension examples";
-    }    
   }
 
   @observable String introBind = "Welcome, mofo.";
   @observable String nounBind = "Noun Declensions";
   @observable String verbBind = "Verb Conjugations";
   @observable String vocabBind = "Vocabulary";
-  
-  @observable String declensionBind = "declension test";
-  @observable String decExampleBind = "test example";
+  @observable String dicBind = "Dictionary";
   
   // filters and transformers can be referenced as class fields
   final Transformer asInteger = new StringToInt();

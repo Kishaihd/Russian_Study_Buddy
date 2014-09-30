@@ -54,5 +54,58 @@ class AppView extends PolymerElement {
     // prevent app reload on <form> submission
     event.preventDefault();
   }
+  
+  @observable List<String> Declensions = [
+    "Nominative", 
+    "Acc(Animate)",
+    "Acc(Inanimate)",
+    "Genetive",
+    "Dative",
+    "Instrumental",
+    "Prepositional"                     
+  ];
+  
+  @observable List<String> M_Dec = [
+    "-,o,e",
+    "Genetive",
+    "Nominative",
+    "-а,я",
+    "-у,ю",
+    "-ом,ем",
+    "е,и"
+  ];
+  
+  
+  /*
+                  <th>Nominative</th>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>Accusative</th>
+                    <td>Animate: Genetive</td>
+                  </tr>
+                  <tr>
+                    <th>Accusative</th>
+                    <td>Inanimate: nominative</td>
+                  </tr>   
+                  <tr>                  
+                    <th>Genetive</th>
+                    <td>-А</td>
+                  </tr>
+                  <tr>
+                    <th>Dative</th>
+                    <td>-У</td>
+                  </tr>
+                  <tr>
+                    <th>Instrumental</th>
+                    <td>-ОМ</td>
+                  </tr>
+                  <tr>
+                    <th>Prepositional</th>
+                    <td>-Е</td>
+    
+   */
+  
+  
 }
 

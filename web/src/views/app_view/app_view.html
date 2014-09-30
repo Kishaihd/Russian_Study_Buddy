@@ -20,19 +20,15 @@
     <style>
       #cont {
         padding: 10px;
-        background-color: 3b8183;
-      }
-      
-      .intro-box {
-        color: 424b4b;
-        background-color: bdced7;
-      }
-      
-      .shits {
-        color: black;
         background-color: black;
-        text-color: black;
+        color: black;
       }
+      
+      .mDeclensions {
+        background-color: 3b8183; 
+      }
+      
+      
 
       .box-container {
         width: 475px;
@@ -42,8 +38,9 @@
       }
       
       #main-container {
-        background: 2a56c6;
-        color: white;
+        background: #2a56c6;
+        background-color: black;
+        color: black;;
       }
       
       #my-button {
@@ -99,10 +96,10 @@
 
       <!-- Throw in some core-collapse stuff! -->
 
-      <div class="content" id="cont">
+      <div class="content">
         <!-- p -->
           <template if="{{currentView == 'INTRO_VIEW'}}">
-            <div id="intro_view" class="intro-box"> 
+            <div id="intro_view"> 
               {{introBind}}
             </div>
           </template>
@@ -117,75 +114,25 @@
             <!-- Declension Endings -->
               <div>
                 <table>
-                <template repeat="{{item in Declensions}}">
-                  <tr>
-                    <td>
-                      {{item}}
-                    </td>
-                  </tr>
-                </template>
-              
-                <!--
-                  <caption><br><paper-button primary raisedButton >Masculine</paper-button></caption>
-                  <tr> 
-                    <th>Nominative</th>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <th>Accusative</th>
-                    <td>Animate: Genetive</td>
-                  </tr>
-                  <tr>
-                    <th>Accusative</th>
-                    <td>Inanimate: nominative</td>
-                  </tr>   
-                  <tr>                  
-                    <th>Genetive</th>
-                    <td>-А</td>
-                  </tr>
-                  <tr>
-                    <th>Dative</th>
-                    <td>-У</td>
-                  </tr>
-                  <tr>
-                    <th>Instrumental</th>
-                    <td>-ОМ</td>
-                  </tr>
-                  <tr>
-                    <th>Prepositional</th>
-                    <td>-Е</td>
-                  </tr>
-                  -->
-                  </table>
-                <br>
-                  <table>
-                  <caption><br><paper-button secondary raisedButton >Feminine</paper-button></caption>
-                  <tr> 
-                    <th>Nominative</th>
-                    <td>-А</td>
-                  </tr>
-                  <tr>
-                    <th>Accusative</th>
-                    <td>-У</td>
-                  </tr>   
-                  <tr>                  
-                    <th>Genetive</th>
-                    <td>-И</td>
-                  </tr>
-                  <tr>
-                    <th>Dative</th>
-                    <td>-Е</td>
-                  </tr>
-                  <tr>
-                    <th>Instrumental</th>
-                    <td>-ОЙ</td>
-                  </tr>
-                  <tr>
-                    <th>Prepositional</th>
-                    <td>-Е</td>
-                  </tr>
+                  <caption><br>Masculine</caption>
+                  <tr layout template repeat="{{item in mDecTable.keys}}">
+                    <th>{{item}}</th>
+                    <td>{{mDecTable[item]}}</td>
+                  </tr>                                
                 </table>
+                
+                <br> <!--  -->
+                
+                  <table>
+                  <caption><br>Feminine</caption>
+                  <tr layout template repeat="{{item in fDecTable.keys}}">
+                    <th>{{item}}</th>
+                    <td>{{fDecTable[item]}}</td>
+                  </tr>   
+                </table>
+                
                 <br>
+                
                 <table>
                   <caption><br><paper-button default raisedButton >Neuter </paper-button></caption>
                   <tr> 

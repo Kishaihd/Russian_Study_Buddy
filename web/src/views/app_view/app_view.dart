@@ -55,57 +55,36 @@ class AppView extends PolymerElement {
     event.preventDefault();
   }
   
-  @observable List<String> Declensions = [
+  static List<String> declensions =[
     "Nominative", 
-    "Acc(Animate)",
-    "Acc(Inanimate)",
+    "Accusative",
     "Genetive",
+    "Prepositional",                     
     "Dative",
-    "Instrumental",
-    "Prepositional"                     
+    "Instrumental"
   ];
   
-  @observable List<String> M_Dec = [
-    "-,o,e",
-    "Genetive",
-    "Nominative",
-    "-а,я",
-    "-у,ю",
-    "-ом,ем",
-    "е,и"
+  // Masculine Declensions.
+  static List<String> mascDec = [ 
+    " -,o,e,ь",
+    " *see below",
+    " а,я",
+    " е,и",
+    " у,ю",
+    " ом,ем"
   ];
   
+  static List<String> femDec = [
+    " а,я",
+    " у,ю",
+    " ы,и",
+    " е,и",
+    " е,и",
+    " ой,ей"
+  ];
   
-  /*
-                  <th>Nominative</th>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <th>Accusative</th>
-                    <td>Animate: Genetive</td>
-                  </tr>
-                  <tr>
-                    <th>Accusative</th>
-                    <td>Inanimate: nominative</td>
-                  </tr>   
-                  <tr>                  
-                    <th>Genetive</th>
-                    <td>-А</td>
-                  </tr>
-                  <tr>
-                    <th>Dative</th>
-                    <td>-У</td>
-                  </tr>
-                  <tr>
-                    <th>Instrumental</th>
-                    <td>-ОМ</td>
-                  </tr>
-                  <tr>
-                    <th>Prepositional</th>
-                    <td>-Е</td>
-    
-   */
-  
+  @observable Map<List,List> mDecTable = new Map.fromIterables(declensions, mascDec);
+  @observable Map<List,List> fDecTable = new Map.fromIterables(declensions, femDec);
   
 }
 

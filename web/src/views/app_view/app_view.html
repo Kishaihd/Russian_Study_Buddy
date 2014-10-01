@@ -99,9 +99,11 @@
       <div class="content">
         <!-- p -->
           <template if="{{currentView == 'INTRO_VIEW'}}">
-            <div id="intro_view"> 
-              {{introBind}}
-            </div>
+            <paper-tabs class="transparent-teal">
+              <paper-tab> 
+                {{introBind}}
+              </paper-tab>
+            </paper-tabs>
           </template>
         
           <template if="{{currentView == 'NOUN_VIEW'}}">
@@ -129,123 +131,27 @@
                     <th>{{item}}</th>
                     <td>{{fDecTable[item]}}</td>
                   </tr>   
-                </table>
-                
-                <br>
-                
-                <table>
-                  <caption><br><paper-button default raisedButton >Neuter </paper-button></caption>
-                  <tr> 
-                    <th>Nominative</th>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <th>Accusative</th>
-                    <td>Nominative</td>
-                  </tr>   
-                  <tr>                  
-                    <th>Genetive</th>
-                    <td>-А</td>
-                  </tr>
-                  <tr>
-                    <th>Dative</th>
-                    <td>-У</td>
-                  </tr>
-                  <tr>
-                    <th>Instrumental</th>
-                    <td>-ОМ</td>
-                  </tr>
-                  <tr>
-                    <th>Prepositional</th>
-                    <td>-Е</td>
-                  </tr>
-                </table>
+                </table>                
               </div>
               <!-- Declension Examples -->
               <div>
                 <table>
-                  <caption><br><paper-button primary raisedButton >Masculine</paper-button></caption>
-                  <tr> 
-                    <th>Nominative</th>
-                    <td>СТОЛ</td>
-                  </tr>
-                  <tr>
-                    <th>Accusative</th>
-                    <td>СТОЛ</td>
-                  </tr>   
-                  <tr>                  
-                    <th>Genetive</th>
-                    <td>СТОЛА</td>
-                  </tr>
-                  <tr>
-                    <th>Dative</th>
-                    <td>СТОЛУ</td>
-                  </tr>
-                  <tr>
-                    <th>Instrumental</th>
-                    <td>СТОЛОМ</td>
-                  </tr>
-                  <tr>
-                    <th>Prepositional</th>
-                    <td>СТОЛЕ</td>
-                  </tr>
-                  </table>
-                <br>
+                  <caption><br>Masculine</caption>
+                  <tr layout template repeat="{{item in mDecTable.keys}}">
+                    <th>{{item}}</th>
+                    <td>{{mDecTable[item]}}</td>
+                  </tr>                                
+                </table>
+                
+                <br> <!--  -->
+                
                   <table>
-                  <caption><br><paper-button secondary raisedButton >Feminine</paper-button></caption>
-                  <tr> 
-                    <th>Nominative</th>
-                    <td>КНИГА</td>
-                  </tr>
-                  <tr>
-                    <th>Accusative</th>
-                    <td>КНИГУ</td>
+                  <caption><br>Feminine</caption>
+                  <tr layout template repeat="{{item in fDecTable.keys}}">
+                    <th>{{item}}</th>
+                    <td>{{fDecTable[item]}}</td>
                   </tr>   
-                  <tr>                  
-                    <th>Genetive</th>
-                    <td>КНИГИ</td>
-                  </tr>
-                  <tr>
-                    <th>Dative</th>
-                    <td>КНИГЕ</td>
-                  </tr>
-                  <tr>
-                    <th>Instrumental</th>
-                    <td>КНИГОЙ</td>
-                  </tr>
-                  <tr>
-                    <th>Prepositional</th>
-                    <td>КНИГЕ</td>
-                  </tr>
-                </table>
-                <br>
-                <table>
-                  <caption><br><paper-button default raisedButton >Neuter </paper-button></caption>
-                  <tr> 
-                    <th>Nominative</th>
-                    <td>ПИСЬМО</td>
-                  </tr>
-                  <tr>
-                    <th>Accusative</th>
-                    <td>ПИСЬМО</td>
-                  </tr>   
-                  <tr>                  
-                    <th>Genetive</th>
-                    <td>ПИСЬМА</td>
-                  </tr>
-                  <tr>
-                    <th>Dative</th>
-                    <td>ПИСЬМУ</td>
-                  </tr>
-                  <tr>
-                    <th>Instrumental</th>
-                    <td>ПИСЬМОМ</td>
-                  </tr>
-                  <tr>
-                    <th>Prepositional</th>
-                    <td>ПИСЬМЕ</td>
-                  </tr>
-                </table>
+                </table> 
               </div>
             </core-pages>
   

@@ -5,6 +5,7 @@ import 'package:polymer/polymer.dart';
 import 'package:polymer_expressions/filter.dart';
 import '../../utils/filters.dart';
 
+
 @CustomTag('app-view')
 class AppView extends PolymerElement {
 
@@ -53,38 +54,68 @@ class AppView extends PolymerElement {
   void submit(Event event, var detail, Element target) {
     // prevent app reload on <form> submission
     event.preventDefault();
-  }
-  
-  static List<String> declensions =[
-    "Nominative", 
-    "Accusative",
-    "Genetive",
-    "Prepositional",                     
-    "Dative",
-    "Instrumental"
-  ];
-  
-  // Masculine Declensions.
-  static List<String> mascDec = [ 
-    " -,o,e,ь",
-    " *see below",
-    " а,я",
-    " е,и",
-    " у,ю",
-    " ом,ем"
-  ];
-  
-  static List<String> femDec = [
-    " а,я",
-    " у,ю",
-    " ы,и",
-    " е,и",
-    " е,и",
-    " ой,ей"
-  ];
-  
-  @observable Map<List,List> mDecTable = new Map.fromIterables(declensions, mascDec);
-  @observable Map<List,List> fDecTable = new Map.fromIterables(declensions, femDec);
-  
+  }  
 }
+
+class Declensions {
+    
+    Declensions() {}    
+    
+    @observable Map<List,List> mDecTable() {
+      return new Map.fromIterables(declensions, masculineDeclensions);    
+    }
+    
+    @observable Map<List,List> fDecTable() {
+      return new Map.fromIterables(declensions, femenineDeclensions);
+    }
+    
+    static List<String> declensions =[
+      "Nominative", 
+      "Accusative",
+      "Genetive",
+      "Prepositional",                     
+      "Dative",
+      "Instrumental"
+    ];
+    
+    // Masculine Declensions.
+    static List<String> masculineDeclensions = [ 
+      " -,o,e,ь",
+      " *see below",
+      " а,я",
+      " е,и",
+      " у,ю",
+      " ом,ем"
+    ];
+    
+    static List<String> mascDecExamples = [
+      " стол музей словарь" ,
+      " *see below",
+      " стола музея словаря",
+      " столе музеи словаре",
+      " столу музею словару",
+      " столом музеем словаром"
+    ];
+    
+    static List<String> femenineDeclensions = [
+      " а,я",
+      " у,ю",
+      " ы,и",
+      " е,и",
+      " е,и",
+      " ой,ей"
+    ];
+    
+    static List<String> femDecExamples = [
+      " книга земля",
+      " книгу землю",
+      " книги земли",
+      " книге земле",
+      " книге земле",
+      " книгой землей"
+        ];
+    
+    
+    
+  }
 

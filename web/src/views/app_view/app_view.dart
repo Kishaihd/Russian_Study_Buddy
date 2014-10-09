@@ -55,21 +55,47 @@ class AppView extends PolymerElement {
     // prevent app reload on <form> submission
     event.preventDefault();
   }  
+  
+  Declensions d = new Declensions();
+  
 }
 
 class Declensions {
     
-    Declensions() {}    
+    Declensions(){}    
+
+    Map get fdts => fDecTabSi;
+    Map get mdts => mDecTabSi;
+    Map get ndts => nDecTabSi;
+    Map get fdtp => fDecTabPl;
+    Map get mdtp => mDecTabPl;
+    Map get ndtp => nDecTabPl;
+    Map get fdes => fDecTabSi;
+    Map get mdes => mDecTabSi;        
+    Map get ndes => nDecTabSi;
+    Map get fdep => fDecExPl;
+    Map get mdep => mDecExPl;
+    Map get ndep => nDecExPl; 
     
-    @observable Map<List,List> mDecTable() {
-      return new Map.fromIterables(declensions, masculineDeclensions);    
-    }
+    // Declension endings, singular.
+    static Map<List,List> fDecTabSi = new Map.fromIterables(declensions, feminineDeclensionsSingular);  
+    static Map<List,List> mDecTabSi = new Map.fromIterables(declensions, masculineDeclensionsSingular);
+    static Map<List,List> nDecTabSi = new Map.fromIterables(declensions, neuterDeclensionsSingular);
+    // Declension endings, plural.
+    static Map<List, List> fDecTabPl = new Map.fromIterables(declensions, masculineDeclensionsPlural); 
+    static Map<List, List> mDecTabPl = new Map.fromIterables(declensions, feminineDeclensionsPlural);
+    static Map<List, List> nDecTabPl = new Map.fromIterables(declensions, neuterDeclensionsPlural);
+    // Declension examples, singular.
+    static Map<List,List> fDecExSi = new Map.fromIterables(declensions, femDecExamplesSingular);
+    static Map<List,List> mDecExSi = new Map.fromIterables(declensions, mascDecExamplesSingular);
+    static Map<List,List> nDecExSi = new Map.fromIterables(declensions, neutDecExamplesSingular);
+    // Declension examples, singular.
+    static Map<List,List> fDecExPl = new Map.fromIterables(declensions, femDecExamplesPlural);
+    static Map<List,List> mDecExPl = new Map.fromIterables(declensions, mascDecExamplesPlural);
+    static Map<List,List> nDecExPl = new Map.fromIterables(declensions, neutDecExamplesPlural);
     
-    @observable Map<List,List> fDecTable() {
-      return new Map.fromIterables(declensions, femenineDeclensions);
-    }
-    
-    static List<String> declensions =[
+    // Declensions.
+    static final List<String> declensions =[
       "Nominative", 
       "Accusative",
       "Genetive",
@@ -79,7 +105,7 @@ class Declensions {
     ];
     
     // Masculine Declensions.
-    static List<String> masculineDeclensions = [ 
+    static List<String> masculineDeclensionsSingular = [ 
       " -,o,e,ь",
       " *see below",
       " а,я",
@@ -87,17 +113,34 @@ class Declensions {
       " у,ю",
       " ом,ем"
     ];
-    
-    static List<String> mascDecExamples = [
-      " стол музей словарь" ,
+    static List<String> masculineDeclensionsPlural = [
+      " ы и",
       " *see below",
-      " стола музея словаря",
-      " столе музеи словаре",
-      " столу музею словару",
-      " столом музеем словаром"
+      " ов ев ей",
+      " ах ях",
+      " ам ям",
+      " ами,ями"
     ];
     
-    static List<String> femenineDeclensions = [
+    static List<String> mascDecExamplesSingular = [
+      " стол   музей  брат" ,
+      " стол   музей  брата",
+      " стола  музея  брата",
+      " столе  музеи  брате",
+      " столу  музею  брату",
+      " столом музеем братом"
+    ];
+    static List<String> mascDecExamplesPlural = [
+      " столы   музеи  братья" ,
+      " столы   музеи  братьев",
+      " столов  музеев  братьев",
+      " столах  музеях  братьях",
+      " столам  музеям  братьям",
+      " столами музеями братьями"
+    ];
+    
+    // Feminine Declensions, Singular.
+    static List<String> feminineDeclensionsSingular = [
       " а,я",
       " у,ю",
       " ы,и",
@@ -105,17 +148,67 @@ class Declensions {
       " е,и",
       " ой,ей"
     ];
-    
-    static List<String> femDecExamples = [
-      " книга земля",
-      " книгу землю",
-      " книги земли",
-      " книге земле",
-      " книге земле",
+    static List<String> feminineDeclensionsPlural = [
+      " ы,и",
+      " *",
+      " - ей",
+      " ах,ях",
+      " ам,ям",
+      " ами,ями"
+    ];
+        
+    static List<String> femDecExamplesSingular = [
+      " книга  земля",
+      " книгу  землю",
+      " книги  земли",
+      " книге  земле",
+      " книге  земле",
       " книгой землей"
-        ];
-    
-    
+    ];
+    static List<String> femDecExamplesPlural = [
+      " книги  земли",
+      " книги  земли",
+      " книг  земель",
+      " книгах  землях",
+      " книгам  землям",
+      " книгами землями"
+    ];
+
+    // Neuter Declensions.
+     static List<String> neuterDeclensionsSingular = [ 
+       " o,e",
+       " о,е",
+       " а,я",
+       " е,ё",
+       " у,ю",
+       " ом,ем"
+     ];
+     
+     static List<String> neuterDeclensionsPlural = [
+       " а,я",
+       " а,я",
+       " -,й",
+       " ах,ях",
+       " ам,ям",
+       " ами,ями"
+     ];
+     
+     static List<String> neutDecExamplesSingular = [
+       " слово окно" ,
+       " слова окна",
+       " слово окно",
+       " слове окне",
+       " слову окну",
+       " словом окном"
+     ];
+     static List<String> neutDecExamplesPlural = [
+       " слова окна" ,
+       " слов окон",
+       " слова окна",
+       " словах окнах",
+       " словам окнам",
+       " словами окнами"
+     ];
     
   }
 

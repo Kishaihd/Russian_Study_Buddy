@@ -85,10 +85,10 @@
         </core-toolbar>
 
         <core-menu valueattr="label"> <!--  -->
-          <core-item icon="drawer" label="Noun Declensions"><a on-click="{{changeView}}" data-view="NOUN_VIEW"></a></core-item>
-          <core-item icon="drawer" label="Verb Conjugations"><a on-click="{{changeView}}" data-view="VERB_VIEW"></a></core-item>
-          <core-item icon="drawer" label="Vocabulary"><a on-click="{{changeView}}" data-view="VOCAB_VIEW"></a></core-item>
-          <core-item icon="drawer" label="Dictionary"><a on-click="{{changeView}}" data-view="DIC_VIEW"></a></core-item>
+          <core-item icon="drawer" label="Noun Declensions"><a on-tap="{{changeView}}" data-view="NOUN_VIEW"></a></core-item>
+          <core-item icon="drawer" label="Verb Conjugations"><a on-tap="{{changeView}}" data-view="VERB_VIEW"></a></core-item>
+          <core-item icon="drawer" label="Vocabulary"><a on-tap="{{changeView}}" data-view="VOCAB_VIEW"></a></core-item>
+          <core-item icon="drawer" label="Dictionary"><a on-tap="{{changeView}}" data-view="DIC_VIEW"></a></core-item>
         </core-menu>
       </core-header-panel>
 
@@ -106,54 +106,110 @@
             </paper-tabs>
           </template>
         
+<!--NOUN VIEW-->
           <template if="{{currentView == 'NOUN_VIEW'}}">
-              <paper-tabs selected="{{tabSelected}}" class="transparent-teal"> <!--  id="tabs"  -->
+              <paper-tabs selected="{{tabSelected}}" class="transparent-teal">
                 <paper-tab>Declensions</paper-tab>
                 <paper-tab>Examples</paper-tab>
               </paper-tabs>
       
+            <!-- Declension Endings Singular -->
             <core-pages selected="{{tabSelected}}">
-            <!-- Declension Endings -->
-              <div>
-                <table>
-                  <caption><br>Masculine</caption>
-                  <tr layout template repeat="{{item in mDecTable.keys}}">
-                    <th>{{item}}</th>
-                    <td>{{mDecTable[item]}}</td>
-                  </tr>                                
-                </table>
-                
-                <br> <!--  -->
-                
+              <div horizontal layout>
+                <div vertical center-justified layout>
+                  <!-- Masc Sing -->
                   <table>
-                  <caption><br>Feminine</caption>
-                  <tr layout template repeat="{{item in fDecTable.keys}}">
-                    <th>{{item}}</th>
-                    <td>{{fDecTable[item]}}</td>
-                  </tr>   
-                </table>                
+                    <caption><br>Masculine Singular</caption>
+                    <tr layout template repeat="{{item in d.mdts.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.mdts[item]}}</td>
+                    </tr>                                
+                  </table>
+                  <br>
+                  <div><strong>*If animate: genetive.</strong></div>
+                  <br>
+                  <div><strong> If inanimate: nominative.</strong></div>
+                  
+                    <br> 
+                  <!-- Fem Sing  -->
+                  <table>
+                    <caption><br>Feminine Singular</caption>
+                    <tr layout template repeat="{{item in d.fdts.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.fdts[item]}}</td>
+                    </tr>   
+                  </table> 
+                  
+                  <br> 
+                  <!-- Neut Sing  -->
+                  <table>
+                    <caption><br>Neuter Singular</caption>
+                    <tr layout template repeat="{{item in d.ndts.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.fdts[item]}}</td>
+                    </tr>   
+                  </table>                
+                </div>
+                
+                <!-- Declension Endings Plural -->
+                <div vertical center-justified layout>
+                  <!-- Masc Plural  -->
+                  <table>
+                    <caption><br>Masculine Plural</caption>
+                    <tr layout template repeat="{{item in d.mdtp.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.mdtp[item]}}</td>
+                    </tr>                                
+                  </table>
+                  <div><strong>*If animate: genetive.</strong></div>
+                  <br>
+                  <div><strong> If inanimate: nominative.</strong></div>
+                  
+                  <br> 
+                  
+                  <!-- Fem Plural  -->
+                  <table>
+                    <caption><br>Feminine Plural</caption>
+                    <tr layout template repeat="{{item in d.fdtp.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.fdtp[item]}}</td>
+                    </tr>   
+                  </table> 
+                  
+                  <br> 
+                  
+                  <!-- Neut Plural  -->
+                  <table>
+                    <caption><br>Neuter Plural</caption>
+                    <tr layout template repeat="{{item in d.ndtp.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.fdtp[item]}}</td>
+                    </tr>   
+                  </table>
+                </div>
               </div>
+              
               <!-- Declension Examples -->
-              <div>
+              <div horizontal center-justified layout>
                 <table>
-                  <caption><br>Masculine</caption>
-                  <tr layout template repeat="{{item in mDecTable.keys}}">
+                  <caption><br>Masculine Singular</caption>
+                  <tr layout template repeat="{{item in d.mdes.keys}}">
                     <th>{{item}}</th>
-                    <td>{{mDecTable[item]}}</td>
+                    <td>{{d.mdes[item]}}</td>
                   </tr>                                
                 </table>
                 
                 <br> <!--  -->
                 
                   <table>
-                  <caption><br>Feminine</caption>
-                  <tr layout template repeat="{{item in fDecTable.keys}}">
+                  <caption><br>Feminine Singular</caption>
+                  <tr layout template repeat="{{item in d.fdes.keys}}">
                     <th>{{item}}</th>
-                    <td>{{fDecTable[item]}}</td>
+                    <td>{{d.fdes[item]}}</td>
                   </tr>   
                 </table> 
               </div>
-            </core-pages>
+            </core-pages> <!-- Noun Core Pages, End. -->
   
           </template>
 

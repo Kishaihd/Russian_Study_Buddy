@@ -28,11 +28,11 @@ class AppView extends PolymerElement {
       currentView = target.attributes['data-view'];
   }
 
-  @observable String introBind = "Welcome, mofo.";
-  @observable String nounBind = "Noun Declensions";
-  @observable String verbBind = "Verb Conjugations";
-  @observable String vocabBind = "Vocabulary";
-  @observable String dicBind = "Dictionary";
+  String introBind = "Welcome, mofo.";
+  String nounBind = "Noun Declensions";
+  String verbBind = "Verb Conjugations";
+  String vocabBind = "Vocabulary";
+  String dicBind = "Dictionary";
   
   // filters and transformers can be referenced as class fields
   final Transformer asInteger = new StringToInt();
@@ -56,23 +56,58 @@ class AppView extends PolymerElement {
     event.preventDefault();
   }  
   
+  void addWord(Event event, var detail, Element target) {
+    v.addWord(target.toString());
+  }
+  
+  
   Declensions d = new Declensions();
   
+  @observable Vocab v = new Vocab();
+  
 }
+
+class Vocab {
+  List<String> _vocabList = [];
+  int listIterator = 0;
+  
+  void addWord(String word) {
+    _vocabList.add(word.trim());
+  }
+  
+  List get vocabularyList => _vocabList;
+  
+  String showNext() {
+    String nextWord = _vocabList[listIterator];
+    listIterator++;    
+    return nextWord;
+  }
+  
+  String showPrevious() {
+    String previousWord = _vocabList[listIterator];
+    listIterator--;
+    return previousWord;
+  }
+  
+}
+
 
 class Declensions {
     
     Declensions(){}    
-
+    // Singular Declensions.
     Map get fdts => fDecTabSi;
     Map get mdts => mDecTabSi;
     Map get ndts => nDecTabSi;
+    // Plural Declensions.
     Map get fdtp => fDecTabPl;
     Map get mdtp => mDecTabPl;
     Map get ndtp => nDecTabPl;
-    Map get fdes => fDecTabSi;
-    Map get mdes => mDecTabSi;        
-    Map get ndes => nDecTabSi;
+    // Singular examples.
+    Map get fdes => fDecExSi;
+    Map get mdes => mDecExSi;        
+    Map get ndes => nDecExSi;
+    // Plural examples.
     Map get fdep => fDecExPl;
     Map get mdep => mDecExPl;
     Map get ndep => nDecExPl; 
@@ -82,8 +117,8 @@ class Declensions {
     static Map<List,List> mDecTabSi = new Map.fromIterables(declensions, masculineDeclensionsSingular);
     static Map<List,List> nDecTabSi = new Map.fromIterables(declensions, neuterDeclensionsSingular);
     // Declension endings, plural.
-    static Map<List, List> fDecTabPl = new Map.fromIterables(declensions, masculineDeclensionsPlural); 
-    static Map<List, List> mDecTabPl = new Map.fromIterables(declensions, feminineDeclensionsPlural);
+    static Map<List, List> fDecTabPl = new Map.fromIterables(declensions, feminineDeclensionsPlural); 
+    static Map<List, List> mDecTabPl = new Map.fromIterables(declensions, masculineDeclensionsPlural);
     static Map<List, List> nDecTabPl = new Map.fromIterables(declensions, neuterDeclensionsPlural);
     // Declension examples, singular.
     static Map<List,List> fDecExSi = new Map.fromIterables(declensions, femDecExamplesSingular);
@@ -106,19 +141,19 @@ class Declensions {
     
     // Masculine Declensions.
     static List<String> masculineDeclensionsSingular = [ 
-      " -,o,e,ь",
+      " -, o, e, ь",
       " *see below",
-      " а,я",
-      " е,и",
-      " у,ю",
-      " ом,ем"
+      " а, я",
+      " е, и",
+      " у, ю",
+      " ом, ем"
     ];
     static List<String> masculineDeclensionsPlural = [
-      " ы и",
+      " ы, и",
       " *see below",
-      " ов ев ей",
-      " ах ях",
-      " ам ям",
+      " ов, ев, ей",
+      " ах, ях",
+      " ам, ям",
       " ами,ями"
     ];
     
@@ -141,20 +176,20 @@ class Declensions {
     
     // Feminine Declensions, Singular.
     static List<String> feminineDeclensionsSingular = [
-      " а,я",
-      " у,ю",
-      " ы,и",
-      " е,и",
-      " е,и",
-      " ой,ей"
+      " а, я",
+      " у, ю",
+      " ы, и",
+      " е, и",
+      " е, и",
+      " ой, ей"
     ];
     static List<String> feminineDeclensionsPlural = [
-      " ы,и",
+      " ы, и",
       " *",
-      " - ей",
-      " ах,ях",
-      " ам,ям",
-      " ами,ями"
+      " -, ей",
+      " ах, ях",
+      " ам, ям",
+      " ами, ями"
     ];
         
     static List<String> femDecExamplesSingular = [
@@ -176,21 +211,21 @@ class Declensions {
 
     // Neuter Declensions.
      static List<String> neuterDeclensionsSingular = [ 
-       " o,e",
-       " о,е",
-       " а,я",
-       " е,ё",
-       " у,ю",
-       " ом,ем"
+       " o, e",
+       " о, е",
+       " а, я",
+       " е, ё",
+       " у, ю",
+       " ом, ем"
      ];
      
      static List<String> neuterDeclensionsPlural = [
-       " а,я",
-       " а,я",
-       " -,й",
-       " ах,ях",
-       " ам,ям",
-       " ами,ями"
+       " а, я",
+       " а, я",
+       " -, й",
+       " ах, ях",
+       " ам, ям",
+       " ами, ями"
      ];
      
      static List<String> neutDecExamplesSingular = [

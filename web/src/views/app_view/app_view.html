@@ -12,6 +12,7 @@
 <link rel="import" href="packages/paper_elements/paper_tab.html">
 <link rel="import" href="packages/paper_elements/paper_item.html">
 <link rel="import" href="packages/paper_elements/paper_button.html">
+<link rel="import" href="packages/paper_elements/paper_input.html">
 
 <polymer-element name="app-view">
   <template>
@@ -113,10 +114,10 @@
                 <paper-tab>Examples</paper-tab>
               </paper-tabs>
       
-            <!-- Declension Endings Singular -->
             <core-pages selected="{{tabSelected}}">
+              <!-- Declension Endings Singular -->
               <div horizontal layout>
-                <div vertical center-justified layout>
+                <div>
                   <!-- Masc Sing -->
                   <table>
                     <caption><br>Masculine Singular</caption>
@@ -125,12 +126,10 @@
                       <td>{{d.mdts[item]}}</td>
                     </tr>                                
                   </table>
-                  <br>
                   <div><strong>*If animate: genetive.</strong></div>
-                  <br>
                   <div><strong> If inanimate: nominative.</strong></div>
                   
-                    <br> 
+                    <!--br--> 
                   <!-- Fem Sing  -->
                   <table>
                     <caption><br>Feminine Singular</caption>
@@ -140,19 +139,19 @@
                     </tr>   
                   </table> 
                   
-                  <br> 
+                  <!--br--> 
                   <!-- Neut Sing  -->
                   <table>
                     <caption><br>Neuter Singular</caption>
                     <tr layout template repeat="{{item in d.ndts.keys}}">
                       <th>{{item}}</th>
-                      <td>{{d.fdts[item]}}</td>
+                      <td>{{d.ndts[item]}}</td>
                     </tr>   
                   </table>                
                 </div>
                 
                 <!-- Declension Endings Plural -->
-                <div vertical center-justified layout>
+                <div>
                   <!-- Masc Plural  -->
                   <table>
                     <caption><br>Masculine Plural</caption>
@@ -162,10 +161,7 @@
                     </tr>                                
                   </table>
                   <div><strong>*If animate: genetive.</strong></div>
-                  <br>
                   <div><strong> If inanimate: nominative.</strong></div>
-                  
-                  <br> 
                   
                   <!-- Fem Plural  -->
                   <table>
@@ -176,43 +172,78 @@
                     </tr>   
                   </table> 
                   
-                  <br> 
-                  
                   <!-- Neut Plural  -->
                   <table>
                     <caption><br>Neuter Plural</caption>
                     <tr layout template repeat="{{item in d.ndtp.keys}}">
                       <th>{{item}}</th>
-                      <td>{{d.fdtp[item]}}</td>
+                      <td>{{d.ndtp[item]}}</td>
                     </tr>   
                   </table>
                 </div>
               </div>
               
               <!-- Declension Examples -->
-              <div horizontal center-justified layout>
-                <table>
-                  <caption><br>Masculine Singular</caption>
-                  <tr layout template repeat="{{item in d.mdes.keys}}">
-                    <th>{{item}}</th>
-                    <td>{{d.mdes[item]}}</td>
-                  </tr>                                
-                </table>
-                
-                <br> <!--  -->
-                
+              <div horizontal layout>
+                <div>
                   <table>
-                  <caption><br>Feminine Singular</caption>
-                  <tr layout template repeat="{{item in d.fdes.keys}}">
-                    <th>{{item}}</th>
-                    <td>{{d.fdes[item]}}</td>
-                  </tr>   
-                </table> 
+                    <caption><br>Masculine Singular</caption>
+                    <tr layout template repeat="{{item in d.mdes.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.mdes[item]}}</td>
+                    </tr>                                
+                  </table>
+                  
+                  <table>
+                    <caption><br>Feminine Singular</caption>
+                    <tr layout template repeat="{{item in d.fdes.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.fdes[item]}}</td>
+                    </tr>   
+                  </table> 
+                  
+                  <table>
+                    <caption><br>Neuter Singular</caption>
+                    <tr layout template repeat="{{item in d.ndes.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.ndes[item]}}</td>
+                    </tr>                                
+                  </table>
+                </div>
+                
+                 <div>
+                  <!-- Masc Plural  -->
+                  <table>
+                    <caption><br>Masculine Plural</caption>
+                    <tr layout template repeat="{{item in d.mdep.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.mdep[item]}}</td>
+                    </tr>                                
+                  </table>
+                  
+                  <!-- Fem Plural  -->
+                  <table>
+                    <caption><br>Feminine Plural</caption>
+                    <tr layout template repeat="{{item in d.fdep.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.fdep[item]}}</td>
+                    </tr>   
+                  </table> 
+                  
+                  <!-- Neut Plural  -->
+                  <table>
+                    <caption><br>Neuter Plural</caption>
+                    <tr layout template repeat="{{item in d.ndep.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.ndep[item]}}</td>
+                    </tr>   
+                  </table>
+                </div>                
               </div>
-            </core-pages> <!-- Noun Core Pages, End. -->
-  
+            </core-pages> <!-- Noun Core Pages, End. -->  
           </template>
 
+<!-- VERB VIEW -->
           <template if="{{currentView == 'VERB_VIEW'}}">
             <div id="verb_view" class="verb-box">
               <paper-tabs selected="{{tabSelected}}" class="transparent-teal"> <!--  id="tabs"  -->
@@ -222,189 +253,87 @@
                 <paper-tab>- Verb</paper-tab>
               </paper-tabs>
       
-            <core-pages  center-justified layout selected="{{tabSelected}}">
-            <!-- Declension Endings -->
-              <div>
-                <table>
-                  <caption><br><paper-button primary raisedButton >-АТЬ</paper-button></caption>
-                  <tr> 
-                    <th>Я</th>
-                    <td>Читаю</td>
-                  </tr>
-                  <tr>
-                    <th>Ты</th>
-                    <td>Читаешь</td>
-                  </tr>
-                  <tr>
-                    <th>Он\Она\Оно</th>
-                    <td>Читает</td>
-                  </tr>   
-                  <tr>                  
-                    <th>Мы</th>
-                    <td>Читаем</td>
-                  </tr>
-                  <tr>
-                    <th>Вы</th>
-                    <td>Читаете</td>
-                  </tr>
-                  <tr>
-                    <th>Они</th>
-                    <td>Читают</td>
-                  </tr>
-                  </table>
-                <br>
+              <core-pages  horizontal layout selected="{{tabSelected}}">
+              <!-- atb Verbs -->
+                <div>
                   <table>
-                  <caption><br><paper-button secondary raisedButton >-Ить</paper-button></caption>
-                  <tr> 
-                    <th>Я</th>
-                    <td>Говорю</td>
-                  </tr>
-                  <tr>
-                    <th>Ты</th>
-                    <td>Говоришь</td>
-                  </tr>
-                  <tr>
-                    <th>Он\Она\Оно</th>
-                    <td>Говорит</td>
-                  </tr>   
-                  <tr>                  
-                    <th>Мы</th>
-                    <td>Говорим</td>
-                  </tr>
-                  <tr>
-                    <th>Вы</th>
-                    <td>Говорите</td>
-                  </tr>
-                  <tr>
-                    <th>Они</th>
-                    <td>Говорят</td>
-                  </tr>
-                </table>
-                <br>
-                <table>
-                  <caption><br><paper-button default raisedButton ></paper-button></caption>
-                  <tr> 
-                    <th>Nominative</th>
-                    <td>-</td>
-                  </tr>
-                  <tr>
-                    <th>Accusative</th>
-                    <td>Nominative</td>
-                  </tr>   
-                  <tr>                  
-                    <th>Genetive</th>
-                    <td>-А</td>
-                  </tr>
-                  <tr>
-                    <th>Dative</th>
-                    <td>-У</td>
-                  </tr>
-                  <tr>
-                    <th>Instrumental</th>
-                    <td>-ОМ</td>
-                  </tr>
-                  <tr>
-                    <th>Prepositional</th>
-                    <td>-Е</td>
-                  </tr>
-                </table>
-              </div>
-              <!-- Declension Examples -->
-              <div>
-                <table>
-                  <caption><br><paper-button primary raisedButton >Masculine</paper-button></caption>
-                  <tr> 
-                    <th>Nominative</th>
-                    <td>СТОЛ</td>
-                  </tr>
-                  <tr>
-                    <th>Accusative</th>
-                    <td>СТОЛ</td>
-                  </tr>   
-                  <tr>                  
-                    <th>Genetive</th>
-                    <td>СТОЛА</td>
-                  </tr>
-                  <tr>
-                    <th>Dative</th>
-                    <td>СТОЛУ</td>
-                  </tr>
-                  <tr>
-                    <th>Instrumental</th>
-                    <td>СТОЛОМ</td>
-                  </tr>
-                  <tr>
-                    <th>Prepositional</th>
-                    <td>СТОЛЕ</td>
-                  </tr>
+                    <caption><br></caption>
+                    <tr layout template repeat="{{item in d.ndep.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.ndep[item]}}</td>
+                    </tr>   
                   </table>
-                <br>
+                </div>
+                    
+                <div>
                   <table>
-                  <caption><br><paper-button secondary raisedButton >Feminine</paper-button></caption>
-                  <tr> 
-                    <th>Nominative</th>
-                    <td>КНИГА</td>
-                  </tr>
-                  <tr>
-                    <th>Accusative</th>
-                    <td>КНИГУ</td>
-                  </tr>   
-                  <tr>                  
-                    <th>Genetive</th>
-                    <td>КНИГИ</td>
-                  </tr>
-                  <tr>
-                    <th>Dative</th>
-                    <td>КНИГЕ</td>
-                  </tr>
-                  <tr>
-                    <th>Instrumental</th>
-                    <td>КНИГОЙ</td>
-                  </tr>
-                  <tr>
-                    <th>Prepositional</th>
-                    <td>КНИГЕ</td>
-                  </tr>
-                </table>
-                <br>
-                <table>
-                  <caption><br><paper-button default raisedButton >Neuter </paper-button></caption>
-                  <tr> 
-                    <th>Nominative</th>
-                    <td>ПИСЬМО</td>
-                  </tr>
-                  <tr>
-                    <th>Accusative</th>
-                    <td>ПИСЬМО</td>
-                  </tr>   
-                  <tr>                  
-                    <th>Genetive</th>
-                    <td>ПИСЬМА</td>
-                  </tr>
-                  <tr>
-                    <th>Dative</th>
-                    <td>ПИСЬМУ</td>
-                  </tr>
-                  <tr>
-                    <th>Instrumental</th>
-                    <td>ПИСЬМОМ</td>
-                  </tr>
-                  <tr>
-                    <th>Prepositional</th>
-                    <td>ПИСЬМЕ</td>
-                  </tr>
-                </table>
-              </div>
-            </core-pages>
+                    <caption><br></caption>
+                    <tr layout template repeat="{{item in d.ndep.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.ndep[item]}}</td>
+                    </tr>   
+                  </table>
+                </div>
+                
+                <div>
+                  <table>
+                    <caption><br></caption>
+                    <tr layout template repeat="{{item in d.ndep.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.ndep[item]}}</td>
+                    </tr>   
+                  </table>
+                </div>
+                    
+                <div>
+                  <table>
+                    <caption><br></caption>
+                    <tr layout template repeat="{{item in d.ndep.keys}}">
+                      <th>{{item}}</th>
+                      <td>{{d.ndep[item]}}</td>
+                    </tr>   
+                  </table>
+                </div>             
+              </core-pages>
             </div>
           </template>
           
+<!-- VOCAB VIEW -->     
           <template if="{{currentView == 'VOCAB_VIEW'}}">
-            <div id="vocab_view" class="vocab-box">
-              {{vocabBind}}
-            </div>
+              <paper-tabs selected="{{tabSelected}}" class="transparent-teal">
+                <paper-tab>Add a new Word</paper-tab>
+                <paper-tab>Full vocab list</paper-tab>
+                <paper-tab>Flash Cards</paper-tab>
+              </paper-tabs>
+      
+            <core-pages selected="{{tabSelected}}">
+              <!-- Add vocab word -->
+              <div vertical layout>
+                <form> <!-- action="" -->
+                  First name: <paper-input type="text" name="fname"></paper-input><br>
+                  Last name: <paper-input type="text" name="lname"></paper-input><br>
+                  <input type="submit" value="Submit">
+                </form>
+              </div>
+
+              <!-- Full Vocab List -->
+              <div horizontal layout>
+                <!--ol layout template repeat="{{item in v.vocabularyList}}">
+                  <li>{{v.vocabularyList[item]}}</li>
+                </ol-->       
+              </div>
+              
+              <!-- Flash cards  -->
+              <div>
+              
+              </div>                    
+                    
+            </core-pages> <!-- Vocab Core Pages, End. -->  
           </template>
-          <!-- /p -->
+          
+      <!--   -->            
+
+<!-- Dictionary View -->
           <template if="{{currentView == 'DIC_VIEW'}}"> <!-- Dictionary. Ha HA! -->
             <div id="dic_view" class="dic-box"> 
               {{dicBind}}

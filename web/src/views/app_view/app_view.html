@@ -310,17 +310,19 @@
               <!-- Add vocab word -->
               <div vertical layout>
                 <form> <!-- action="" -->
-                  First name: <paper-input type="text" name="fname"></paper-input><br>
-                  Last name: <paper-input type="text" name="lname"></paper-input><br>
-                  <input type="submit" value="Submit">
+                  <paper-input type="text" id="voc-input" on-enter={{addWord}} label="Input new vocab word here."></paper-input><br>
+                  <input type="submit" value="Add word to list!" on-enter={{addWord}}>
                 </form>
               </div>
 
               <!-- Full Vocab List -->
               <div horizontal layout>
-                <!--ol layout template repeat="{{item in v.vocabularyList}}">
-                  <li>{{v.vocabularyList[item]}}</li>
-                </ol-->       
+                <table>
+                    <caption><br><strong>Vocabulary Word List</strong></caption>
+                    <tr layout template repeat="{{item in v.vocabularyList}}">
+                      <th>{{item}}</th>
+                    </tr>   
+                  </table>      
               </div>
               
               <!-- Flash cards  -->

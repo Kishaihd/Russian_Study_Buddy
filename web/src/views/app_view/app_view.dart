@@ -57,6 +57,7 @@ class AppView extends PolymerElement {
   }  
   
   void addWord(Event event, var detail, Element target) {
+    event.preventDefault();
     v.addWord(target.toString());
   }
   
